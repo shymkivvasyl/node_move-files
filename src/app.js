@@ -6,7 +6,7 @@ const [sourceFile, destinationDir] = process.argv.slice(2);
 
 if (!sourceFile || !destinationDir) {
   console.error('Source file and destination directory are required.');
-  process.exit(1);
+  process.exit(0);
 }
 
 if (sourceFile === destinationDir) {
@@ -15,12 +15,12 @@ if (sourceFile === destinationDir) {
 
 if (!fs.existsSync(sourceFile)) {
   console.error('Source file does not exist.');
-  process.exit(1);
+  process.exit(0);
 }
 
 if (!fs.statSync(sourceFile).isFile()) {
   console.error('Source file is not a file.');
-  process.exit(1);
+  process.exit(0);
 }
 
 const path = require('path');
@@ -32,7 +32,7 @@ if (destinationDir.endsWith('/')) {
     fs.renameSync(sourceFile, fileRoad);
   } else {
     console.error('Destination directory does not exist.');
-    process.exit(1);
+    process.exit(0);
   }
 } else if (
   fs.existsSync(destinationDir) &&
@@ -45,7 +45,7 @@ if (destinationDir.endsWith('/')) {
 
   if (!fs.existsSync(pathParent)) {
     console.error('Parent directory does not exist.');
-    process.exit(1);
+    process.exit(0);
   }
   fs.renameSync(sourceFile, destinationDir);
   process.exit(0);
