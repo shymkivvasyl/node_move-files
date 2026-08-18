@@ -31,7 +31,7 @@ const isDirectory =
 
 if (destinationDir.endsWith('/') && !isDirectory) {
   console.error('Destination directory does not exist.');
-  process.exit(1);
+  process.exit(0);
 }
 
 if (isDirectory) {
@@ -43,7 +43,7 @@ const pathParent = path.dirname(destinationDir);
 
 if (!fs.existsSync(pathParent)) {
   console.error('Parent directory does not exist.');
-  process.exit(1);
+  process.exit(0);
 }
 
 fs.renameSync(sourceFile, destinationDir);
