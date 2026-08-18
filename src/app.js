@@ -5,7 +5,7 @@ const fs = require('fs');
 const [sourceFile, destinationDir] = process.argv.slice(2);
 
 if (!sourceFile || !destinationDir) {
-  console.error('Error: Source file and destination directory are required.');
+  console.error('Source file and destination directory are required.');
   process.exit(1);
 }
 
@@ -14,12 +14,12 @@ if (sourceFile === destinationDir) {
 }
 
 if (!fs.existsSync(sourceFile)) {
-  console.error(`Error: Source file "${sourceFile}" does not exist.`);
+  console.error('Source file does not exist.');
   process.exit(1);
 }
 
 if (!fs.statSync(sourceFile).isFile()) {
-  console.error(`Error: Source file "${sourceFile}" is not a file.`);
+  console.error('Source file is not a file.');
   process.exit(1);
 }
 
@@ -31,9 +31,7 @@ if (destinationDir.endsWith('/')) {
   if (fs.existsSync(destinationDir)) {
     fs.renameSync(sourceFile, fileRoad);
   } else {
-    console.error(
-      `Error: Destination directory "${destinationDir}" does not exist.`,
-    );
+    console.error('Destination directory does not exist.');
     process.exit(1);
   }
 } else if (
@@ -46,7 +44,7 @@ if (destinationDir.endsWith('/')) {
   const pathParent = path.dirname(destinationDir);
 
   if (!fs.existsSync(pathParent)) {
-    console.error("Your parent directory dosn't exist");
+    console.error('Parent directory does not exist.');
     process.exit(1);
   }
   fs.renameSync(sourceFile, destinationDir);
